@@ -7,6 +7,7 @@ import traceback
 import pymysql.cursors
 from dotenv import load_dotenv
 import os
+import jishaku
 
 load_dotenv()
 bot_token = os.getenv("BOT_TOKEN")
@@ -156,5 +157,5 @@ for filename in os.listdir('./cogs'):
 async def licog(ctx):
     await ctx.send(extensions)
 
-
+bot.load_extension("jishaku")
 bot.run(bot_token)
