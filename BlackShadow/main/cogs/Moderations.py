@@ -9,7 +9,7 @@ class Moderation(commands.Cog):
     
     @commands.has_permissions(kick_members = True)
     @commands.command(name="kick",aliases=['k'])
-    async def kick(self , ctx,user:discord.Member,*,reason=None):
+    async def kick(self , ctx ,user:discord.Member,*,reason=None):
         if reason == None:
             reason = "No reason given"
         await user.kick(reason = reason)

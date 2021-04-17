@@ -6,10 +6,10 @@ import re
 from discord import Color, Embed
 
 
-class CodeExec(commands.Cog):
+class Evaluating(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        # TODO: Improve this further
+        
         self.regex = re.compile(r"(\w*)\s*(?:```)(\w*)?([\s\S]*)(?:```$)")
 
     @property
@@ -29,15 +29,16 @@ class CodeExec(commands.Cog):
         if not matches:
             return await ctx.send(
                 embed=Embed(
-                    title="__Error!:negative_squared_cross_mark:__", description="Try again with **Code blocks**"
-                ,color=Color.red())
+                    title="__Code Blocks:negative_squared_cross_mark:__", description="Try again with **Code blocks**"
+                    , color=Color.red(), url="https://www.writebots.com/discord-text-formatting/#:~:text=To%20create%20a%20single%20line,%27backtick%27%20character%3A%20%60.&text=The%20%27tick%27%20or%20%27backtick,a%20single%20line%20code%20block.")
             )
         lang = matches[0][0] or matches[0][1]
         if not lang:
             return await ctx.send(
                 embed=Embed(
-                    title="__Error!:negative_squared_cross_mark:__",
+                    title="__Invalid Language:negative_squared_cross_mark:__",
                     description="Try again with **valid language**",
+                    url="https://www.computerscience.org/resources/computer-programming-languages/"
                 )
             )
         code = matches[0][2]
@@ -68,4 +69,4 @@ class CodeExec(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(CodeExec(bot))
+    bot.add_cog(Evaluating(bot))
