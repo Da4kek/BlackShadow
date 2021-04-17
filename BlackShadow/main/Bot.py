@@ -107,18 +107,20 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or(str(row['prefix']))
 
 @bot.event
 async def on_ready():
-    print(f'''
-Logged in as [{bot.user}]
-============================
-ID: [{bot.user.id}]
-============================
-Default Prefix: [{bot_info['prefix']}]
-============================
-Servers: [{len(bot.guilds)}]
-============================
-Members: [{len(set(bot.get_all_members()))}]
-============================
-  ''')
+    print("bot is ready")
+    while True:
+      # Setting the "Playing" status
+      await bot.change_presence(activity=discord.Game(name="Atari Breakout"))
+      await asyncio.sleep(60)
+      # Setting "Listening to" status
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Sons Of Apollo - Goodbye Divinity"))
+      await asyncio.sleep(60)
+      # Setting "Watching" status
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="The Pick of Destiny"))
+      await asyncio.sleep(60)
+      # Setting "Streaming" status
+      await bot.change_presence(activity=discord.Streaming(name="Watch ma stream lol", url=my_twitch_url))  
+      await asyncio.sleep(60)
 
 
 
