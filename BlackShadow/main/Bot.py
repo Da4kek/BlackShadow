@@ -44,7 +44,7 @@ intents = discord.Intents.all()
 intents.members = True
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(str(row['prefix'])),
                    intents=intents)
-bot.remove_command('help')
+# bot.remove_command('help')
 
 
 # @bot.event
@@ -123,7 +123,8 @@ Members: [{len(set(bot.get_all_members()))}]
 
 @bot.command()
 async def hi(ctx):
-    await ctx.reply("Hello!")
+    em = discord.Embed(title = f"wave recieved",description = f":wave: Hey!",color = discord.Color.green())
+    await ctx.send(embed = em)
 
 
 @bot.command()
@@ -145,18 +146,9 @@ async def paginate(ctx):
     paginator = BotEmbedPaginator(ctx, embeds)
     await paginator.run()
 
-extensions=[
-    'cogs.avatar',
-    'cogs.prefix'
-]
-
-if __name__ == "__main__":
-    for extension in extensions:
-        try:
-            bot.load_extension(extension)
-        except Exception as e: 
-            print(f'Error Loading {extensions}', file=sys.stderr)
-            traceback.print_exc()
+for filename in os.listdir('./cogs'):
+    if filename.endswith(".py"):
+        bot.load_extension(f"cogs.{filename[:-3]}")
 
 # listes The Cog
 @bot.command()
