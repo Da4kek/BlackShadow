@@ -65,7 +65,7 @@ class Evaluating(commands.Cog):
         output += shortened * "\n\n**Short output**"
         embed = Embed(
             title=f"**__Output__**", color=Color.green(),description = output or "**No Output**")
-        await ctx.reply(embed=embed)
+        await ctx.send(embed=embed)
 
 
 def setup(bot: commands.Bot):

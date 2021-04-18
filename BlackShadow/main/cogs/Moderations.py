@@ -13,6 +13,7 @@ class Moderation(commands.Cog):
         if reason == None:
             reason = "No reason given"
         await user.kick(reason = reason)
+        await user.send(f"Hey You have been kicked from **{user.guild.name}** for the reason `{reason}`")
         em = discord.Embed(title=f"Kicked",description = f"user: {user.mention} has been kicked :raised_back_of_hand:")
         em.add_field(name="Reason" , value = reason)
         em.set_author(name = ctx.author.display_name,icon_url=ctx.author.avatar_url)
@@ -25,6 +26,7 @@ class Moderation(commands.Cog):
         if reason == None:
             reason = "No reason given"
         await user.ban(reason = reason)
+        await user.send(f"Hey You have been banned from **{user.guild.name}** for the reason `{reason}`")
         em = discord.Embed(
             title=f"Banned", description=f"user: {user.mention} has been banned :hammer:")
         em.add_field(name = "Reason",value = reason)
