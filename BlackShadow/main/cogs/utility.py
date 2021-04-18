@@ -9,10 +9,11 @@ class Utility(commands.Cog):
     @commands.command()
     async def code_help(self,ctx,desc = None , rep = None):
         user = ctx.author
-        await ctx.author.send("`Explain about your bug/error`")
+        
+        await ctx.author.send("`Explain about your bug/error`\n**Note**: `if your code/problem is too big use only` **Pastebin**`(https://pastebin.com)")
         response_desc = await self.bot.wait_for("message",check = lambda message:message.author == ctx.author , timeout = 300)
         description = response_desc.content
-        await ctx.author.send("`Provide more information about the bug/error by providing a reference link`")
+        await ctx.author.send("`Provide more information about the bug/error using Pastebin`\n**Note**:`Sending errors/code without pastebin will be rejected`")
         response_Rep = await self.bot.wait_for("message",check = lambda message: message.author == ctx.author , timeout = 300)
         replicate = response_Rep.content
         embed = discord.Embed(title = "__**Report**__",color = discord.Color.blue())
@@ -24,9 +25,9 @@ class Utility(commands.Cog):
         for reaction in reactions:
             await ctx.message.add_reaction(reaction)
         def check(reaction,user):
-            return user == ctx.author and str(reaction.emoji) in reactions
+            return user != ctx.author and user != self.bot.me and str(reaction.emoji) in reactions
         try:
-            reaction,user = await self.bot.wait_for("reaction_add",timeout = 30 , check = check)
+            reaction,user = await self.bot.wait_for("reaction_add", check = check)
             if reaction.emoji == "❎":
                 em = discord.Embed(title = "**__Failed__**",color = discord.Color.red())
                 em.add_field(name = "**Not enough details**",value = "`Please provide with more information`",inline = False)
