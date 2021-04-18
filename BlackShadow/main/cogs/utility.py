@@ -31,14 +31,17 @@ class Utility(commands.Cog):
                 em = discord.Embed(title = "**__Failed__**",color = discord.Color.red())
                 em.add_field(name = "**Not enough details**",value = "`Please provide with more information`",inline = False)
                 await ctx.author.send(embed=em)
+                await ctx.send("Information not provided or help not served")
             elif reaction.emoji == "✔️":
                 em = discord.Embed(title = "**__Success__**",color = discord.Color.green())
                 em.add_field(name = "**Thank you**",value = "`help provided thank you for choosing me`",inline = False)
                 await ctx.author.send(embed=em)
+                await ctx.send("Help provided")
             elif reaction.emoji == "‼️":
                 em = discord.Embed(title = "**__Failed__**",color = discord.Color.red())
                 em.add_field(name = "**Error solved**",value = "`seems like the help has been already provided`",inline = False)
                 await ctx.author.send(embed=em)
+                await ctx.send("Help already provided or No help needed")
         except:
             await ctx.send("Try again")
 
