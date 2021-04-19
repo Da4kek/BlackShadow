@@ -47,6 +47,9 @@ class Utility(commands.Cog):
             await ctx.send("Try again")
 
 
+    @commands.command()
+    async def enlarge(self, ctx, emoji: discord.Emoji):
+        await ctx.send(emote.url)
 
 def setup(bot):
     bot.add_cog(Utility(bot))

@@ -6,6 +6,23 @@ from discord.ext.commands import has_permissions, MissingPermissions
 class Moderation(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_guild_join(self, guild):
+        MutedRole = await guild.create_role(
+            name = 'BlackShadow Mute',
+            color = discord.Color(0xF1C27D),
+            permissions=discord.Permissions(
+                send_messages = False,
+                add_reactions = False,
+                view_channel = True,
+                change_nickname = False,
+                connect = False
+            )
+        )
+
+        for channel in guild.channels:
+            await channel.set_permissions(MutedRole, speak=False, send_messages=False, add_reactions = False, read_message_history=True)
     
     @commands.has_permissions(kick_members = True)
     @commands.command(name="kick",aliases=['k'])
