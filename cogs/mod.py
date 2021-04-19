@@ -59,7 +59,7 @@ class Moderation(commands.Cog):
             await i.kick(reason = reason)
         await ctx.send(f"users: {user} have been kicked! with the reason of {reason}")
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     # @commands.has_role(761976040355528715)
     async def createtxt(self,ctx,channelName):
             guild = ctx.guild
@@ -70,7 +70,7 @@ class Moderation(commands.Cog):
 
         # delete textcahnnel
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     # @commands.has_role(761976040355528715)
     async def deletetxt(self,ctx,channel: discord.TextChannel):
             em = discord.Embed(title='success', description=f'channel: {channel} has been deleted' , color=discord.Colour.red())
@@ -79,7 +79,7 @@ class Moderation(commands.Cog):
 
         # create vc
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     # @commands.has_role(761976040355528715)
     async def createvc(self,ctx,channelName):
             guild = ctx.guild
@@ -90,7 +90,7 @@ class Moderation(commands.Cog):
 
         # delete vccahnnel
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     # @commands.has_role(761976040355528715)
     async def deletevc(self,ctx,vc: discord.VoiceChannel):
             em = discord.Embed(title='success', description=f'{vc} has been deleted' , color=discord.Colour.red())
@@ -99,7 +99,7 @@ class Moderation(commands.Cog):
 
         # add role
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     # @commands.has_role(761976040355528715)
     async def addrole(self,ctx,role: discord.Role, user:discord.Member):
             await user.add_roles(role)
@@ -107,7 +107,7 @@ class Moderation(commands.Cog):
 
         # remove role
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     # @commands.has_role(761976040355528715)
     async def removerole(self,ctx,role: discord.Role, user:discord.Member):
             await user.remove_roles(role)
@@ -115,7 +115,7 @@ class Moderation(commands.Cog):
         
         # warn
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     async def warn(self, ctx, member : discord.Member, *, reason="No Reason Provided"):
             try:
                 await member.send(f"You Have Been Warned ⚠️ on **{ctx.guild.name}** for {reason}")
@@ -125,14 +125,14 @@ class Moderation(commands.Cog):
 
     @commands.command(aliases=['smon'])
     @commands.guild_only()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     async def slowmode_on(self, ctx, time):
             await ctx.channel.edit(slowmode_delay=time)
             await ctx.send(f'{time}s of slowmode was set on the current channel.')
 
     @commands.command(aliases=['smoff'])
     @commands.guild_only()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_channels=True)
     async def slowmode_off(self, ctx):
             await ctx.channel.edit(slowmode_delay=0)
             await ctx.send(f'Slowmode removed.')   
