@@ -17,7 +17,7 @@ class Info(commands.Cog):
         em.add_field(name=f":books: | **__Library:__**",
                  value=f"[`discord.py`]", inline=False)
         em.add_field(name=f":keyboard: | **__Creator(s):__**",
-                     value=f"`The-DarK-os#7290`\n`Shadow.py.lua.jsx.css.html#5795`", inline=False)
+                     value=f"`The-DarK-os  # 7290`\n`LegendLife101#5795`\n`MysT#9105`", inline=False)
         em.add_field(name=f":busts_in_silhouette: | **__Servers & Users:__**",
                     value=f"Total Servers: [`{len(self.bot.guilds)}`]\nTotal Users: [`{len(set(self.bot.get_all_members()))}`]", inline=False)
         em.add_field(name=":question: | **__Prefix:__**",
