@@ -17,34 +17,34 @@ port = os.getenv("PORT")
 password = os.getenv("PASSWORD")
 db = os.getenv("DB")
 
-connection = pymysql.connect(
-    host=host,
-    port=int(port),
-    user="root",
-    password=password,
-    db=db,
-    charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor
-)
+# connection = pymysql.connect(
+#     host=host,
+#     port=int(port),
+#     user="root",
+#     password=password,
+#     db=db,
+#     charset="utf8mb4",
+#     cursorclass=pymysql.cursors.DictCursor
+# )
 
-bot_info = {}
-with connection.cursor() as cur:
-    cur.execute('Select * from Botinfo')
-    rows = cur.fetchall()
-    for row in rows:
-        print(f"Prefix: {row['prefix']}\nNumber of Commands: {row['commands']}\nNumber of guilds: {row['guild']}\nNumber of users: {row['users']}\nVersion: {row['version']}")
-        bot_info["prefix"] = row['prefix']
-        bot_info['commands'] = row['commands']
-        bot_info['guild'] = row['guild']
-        bot_info['users'] = row['users']
-        bot_info['version'] = row['version']
+# bot_info = {}
+# with connection.cursor() as cur:
+#     cur.execute('Select * from Botinfo')
+#     rows = cur.fetchall()
+#     for row in rows:
+#         print(f"Prefix: {row['prefix']}\nNumber of Commands: {row['commands']}\nNumber of guilds: {row['guild']}\nNumber of users: {row['users']}\nVersion: {row['version']}")
+#         bot_info["prefix"] = row['prefix']
+#         bot_info['commands'] = row['commands']
+#         bot_info['guild'] = row['guild']
+#         bot_info['users'] = row['users']
+#         bot_info['version'] = row['version']
         
     
 
 
 intents = discord.Intents.all()
 intents.members = True
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(str(row['prefix'])),
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(str("-")),
                    intents=intents)
 # bot.remove_command('help')
 
@@ -113,7 +113,7 @@ Logged in as [{bot.user}]
 ============================
 ID: [{bot.user.id}]
 ============================
-Default Prefix: [{bot_info['prefix']}]
+Default Prefix: [-]
 ============================
 Servers: [{len(bot.guilds)}]
 ============================
