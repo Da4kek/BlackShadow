@@ -10,6 +10,9 @@ class Info(commands.Cog):
 
     @commands.command(aliases = ['stats','botinfo'])
     async def info(self,ctx):
+        """
+        Shows the Statistics of Bots
+        """
         em = discord.Embed(title =f"__**Stats**__",color = random.randint(0,0xFFFFF))
         em.set_thumbnail(url = ctx.guild.me.avatar_url)
         em.add_field(name=f":small_blue_diamond: | **__Version:__**",
