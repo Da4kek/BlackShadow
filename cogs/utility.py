@@ -49,7 +49,7 @@ class Utility(commands.Cog):
 
     @commands.command()
     async def enlarge(self, ctx, emoji: discord.Emoji):
-        await ctx.send(emote.url)
+        await ctx.send(emoji.url)
 
 def setup(bot):
     bot.add_cog(Utility(bot))
