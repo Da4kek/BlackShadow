@@ -5,6 +5,7 @@ import asyncio
 class Utility(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
+
     
     @commands.command()
     async def code_help(self,ctx,desc = None , rep = None):
@@ -47,9 +48,18 @@ class Utility(commands.Cog):
             await ctx.send("Try again")
 
 
-    @commands.command()
-    async def enlarge(self, ctx, emoji: discord.Emoji):
+    @commands.command(name ="eu")
+    async def emoji_url(self, ctx, emoji: discord.Emoji):
         await ctx.send(emoji.url)
+    
+
+    @commands.Cog.listener()
+    async def on_member_join(self,member):
+        guild = member.guild
+        if guild.system_channel is not None:
+            to_Send = f"Welcome {member.mention} to {guild.name}! make sure to send a pizza for our staffs :D"
+            await guild.system_channel.send(to_Send)
+
 
 def setup(bot):
     bot.add_cog(Utility(bot))

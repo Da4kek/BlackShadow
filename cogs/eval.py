@@ -5,7 +5,6 @@ import io
 import re
 from discord import Color, Embed
 
-
 class Evaluating(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
