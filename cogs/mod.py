@@ -35,7 +35,19 @@ class Moderation(commands.Cog):
         em.add_field(name="Reason" , value = reason)
         em.set_author(name = ctx.author.display_name,icon_url=ctx.author.avatar_url)
         await ctx.send(embed = em)
-        
+
+    @commands.has_permissions(ban_members = True)
+    @commands.command(name = "unban",aliases =['ub'])
+    async def unban(self,ctx,*,member):
+        banned_users = await ctx.guilds.bans()
+        member_name , member_disc = member.split("#")
+        for banned_entries in banned_users:
+            user = banned_entries.user
+            if(user.name, user.discriminator) == (member_name , member_disc):
+                await ctx.guild.unban(user)
+                await ctx.send(f"Unbanned {user.name}#{user.discriminator}")
+                return
+
             
     @commands.has_permissions(ban_members = True)
     @commands.command(name = "ban",aliases = ['b'])
@@ -49,6 +61,7 @@ class Moderation(commands.Cog):
         em.add_field(name = "Reason",value = reason)
         em.set_author(name = ctx.author.display_name,icon_url=ctx.author.avatar_url)
         await ctx.send(embed = em)
+    
     
     @commands.is_owner()
     @commands.command(name = "mass kick",aliases = ['mk','masskick'])

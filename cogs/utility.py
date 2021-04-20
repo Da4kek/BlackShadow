@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
 import asyncio
+import json
 
+reaction_role = []
 class Utility(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-
     
     @commands.command()
     async def code_help(self,ctx,desc = None , rep = None):
@@ -59,6 +60,10 @@ class Utility(commands.Cog):
         if guild.system_channel is not None:
             to_Send = f"Welcome {member.mention} to {guild.name}! make sure to send a pizza for our staffs :D"
             await guild.system_channel.send(to_Send)
+
+
+
+
 
 
 def setup(bot):
