@@ -143,6 +143,9 @@ async def hi(ctx):
     await ctx.send(embed = em)
 
 
+
+
+
 @bot.command()
 async def paginate(ctx):
     embeds = [
